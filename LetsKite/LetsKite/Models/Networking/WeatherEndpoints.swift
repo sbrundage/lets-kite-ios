@@ -28,4 +28,5 @@ enum ForecastIncrement: String {
     case minutely = "minutely"
     case hourly = "hourly"
     case daily = "daily"
+    case none = ""
 }

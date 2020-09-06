@@ -19,4 +19,5 @@ class RestWeatherService: WeatherRequest {
             completion(result)
         }
     }
+    
 }

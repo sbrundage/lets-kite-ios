@@ -2,3 +2,6 @@
 xcuserdata/
 
 LetsKite/Resources/Helpers/APIKeys.swift
+
+.DS_Store
+xcuserdata/
