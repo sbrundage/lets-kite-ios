@@ -22,6 +22,7 @@ class LandingViewController: UIViewController {
     
     private func setupUI() {
         zipTextField.delegate = self
+        zipTextField.attributedPlaceholder = NSAttributedString(string: "Zip Code", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         letsFlyButton.isEnabled = false
         letsFlyButton.layer.cornerRadius = 10
         letsFlyButton.setTitleColor(.gray, for: .normal)
@@ -64,7 +65,7 @@ class LandingViewController: UIViewController {
         let weatherPublisher = WeatherServicePublisher()
         
         destinationVC.weatherServicePublisher = weatherPublisher
-//        weatherPublisher.fetchAllWeatherForecast("", "")
+        weatherPublisher.fetchAllWeatherForecast("", "")
     }
 }
 

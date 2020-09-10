@@ -13,7 +13,7 @@ protocol ApiResource {
     
     var baseURL: String { get }
     var method: HTTPMethod { get }
-    var parameters: [String: Any]? { get }
+    var parameters: [String: String]? { get }
 }
 
 extension ApiResource {
@@ -24,19 +24,17 @@ extension ApiResource {
     func createURLRequest() -> URLRequest? {
         guard let url = URL(string: baseURL) else { return nil }
         
-        var request = URLRequest(url: url)
+        guard var components = URLComponents(string: baseURL) else { return nil }
+        
+        if let parameters = parameters {
+            components.queryItems = parameters.map { parameter in URLQueryItem(name: parameter.key, value: parameter.value) }
+        }
+        
+        var request = URLRequest(url: components.url?.absoluteURL ?? url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpMethod = self.method.rawValue
         
-        guard let requestBody = parameters else { return request }
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted)
-        } catch let error {
-            print("Error creating URL Request: \(error.localizedDescription)")
-            return nil
-        }
         return request
     }
 }
