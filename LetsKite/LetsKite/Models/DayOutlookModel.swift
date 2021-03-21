@@ -9,6 +9,7 @@
 import Foundation
 
 struct DayOutlookModel {
+	let dt: Int
     let sunrise: Int
     let sunset: Int
     let temp_day: Float
@@ -21,6 +22,7 @@ struct DayOutlookModel {
     let clouds: Int
     
     init(dailyOutlookModel: DailyOutlookModel) {
+		self.dt = dailyOutlookModel.dt
         self.sunrise = dailyOutlookModel.sunrise
         self.sunset = dailyOutlookModel.sunset
         self.temp_day = dailyOutlookModel.temp.day

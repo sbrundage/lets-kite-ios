@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E434F4E260799CB005E72B5 /* RestWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E434F4D260799CB005E72B5 /* RestWeatherService.swift */; };
 		9E729FDA24FA70AC00936A50 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729FD924FA70AC00936A50 /* APIKeys.swift */; };
 		9E729FDD24FA711100936A50 /* OpenWeatherAllWeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729FDC24FA711100936A50 /* OpenWeatherAllWeatherRequest.swift */; };
 		9E729FE124FA716400936A50 /* ApiResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729FE024FA716400936A50 /* ApiResourceProtocol.swift */; };
 		9E729FE324FA73D000936A50 /* OpenWeatherAllWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729FE224FA73D000936A50 /* OpenWeatherAllWeatherResponse.swift */; };
-		9E729FE524FA780000936A50 /* RestWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E729FE424FA780000936A50 /* RestWeatherService.swift */; };
 		9E9B97A124F678080010CB81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9B97A024F678080010CB81 /* AppDelegate.swift */; };
 		9E9B97A324F678080010CB81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9B97A224F678080010CB81 /* SceneDelegate.swift */; };
 		9E9B97A824F678080010CB81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9B97A624F678080010CB81 /* Main.storyboard */; };
@@ -43,11 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E434F4D260799CB005E72B5 /* RestWeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestWeatherService.swift; sourceTree = "<group>"; };
 		9E729FD924FA70AC00936A50 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		9E729FDC24FA711100936A50 /* OpenWeatherAllWeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAllWeatherRequest.swift; sourceTree = "<group>"; };
 		9E729FE024FA716400936A50 /* ApiResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResourceProtocol.swift; sourceTree = "<group>"; };
 		9E729FE224FA73D000936A50 /* OpenWeatherAllWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAllWeatherResponse.swift; sourceTree = "<group>"; };
-		9E729FE424FA780000936A50 /* RestWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestWeatherService.swift; sourceTree = "<group>"; };
 		9E9B979D24F678080010CB81 /* LetsKite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsKite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9B97A024F678080010CB81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E9B97A224F678080010CB81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E434F4026079511005E72B5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9E434F4D260799CB005E72B5 /* RestWeatherService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		9E729FD824FA709D00936A50 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +169,7 @@
 		9E9B97C424F678BC0010CB81 /* VIewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9E434F4026079511005E72B5 /* Networking */,
 				9EECBFE02505070D00359CDE /* Publishers */,
 				9E9B97C724F678D80010CB81 /* ViewControllers */,
 			);
@@ -170,7 +179,6 @@
 		9E9B97C724F678D80010CB81 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E729FE424FA780000936A50 /* RestWeatherService.swift */,
 				9EECBFD82504FC0600359CDE /* LandingViewController.swift */,
 				9EECBFDA2505028300359CDE /* WindOutlookViewController.swift */,
 			);
@@ -349,13 +357,13 @@
 				9E9B97D524F67B570010CB81 /* WeatherRequest.swift in Sources */,
 				9EECBFDF2505065F00359CDE /* Observer.swift in Sources */,
 				9EECBFE5250517E500359CDE /* DayOutlookTableViewCell.swift in Sources */,
-				9E729FE524FA780000936A50 /* RestWeatherService.swift in Sources */,
 				9E9B97CF24F679C60010CB81 /* WebServiceError.swift in Sources */,
 				9E729FE124FA716400936A50 /* ApiResourceProtocol.swift in Sources */,
 				9E729FDA24FA70AC00936A50 /* APIKeys.swift in Sources */,
 				9E9B97D124F67A290010CB81 /* WeatherEndpoints.swift in Sources */,
 				9EECBFE22505072000359CDE /* WeatherServicePublisher.swift in Sources */,
 				9E9B97D324F67A6D0010CB81 /* WeatherRequestProtocol.swift in Sources */,
+				9E434F4E260799CB005E72B5 /* RestWeatherService.swift in Sources */,
 				9E729FE324FA73D000936A50 /* OpenWeatherAllWeatherResponse.swift in Sources */,
 				9E729FDD24FA711100936A50 /* OpenWeatherAllWeatherRequest.swift in Sources */,
 				9E9B97A124F678080010CB81 /* AppDelegate.swift in Sources */,

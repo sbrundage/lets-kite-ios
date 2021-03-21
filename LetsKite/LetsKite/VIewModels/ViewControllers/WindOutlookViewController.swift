@@ -24,20 +24,20 @@ class WindOutlookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        weatherServicePublisher.addObserver(self)
+		weatherServicePublisher.addObserver(self)
         setupTableView()
     }
     
     private func setupTableView() {
         windOutlookTableView.delegate = self
         windOutlookTableView.dataSource = self
-        windOutlookTableView.register(UINib(nibName: "DayOutlookTableViewCell", bundle: nil), forCellReuseIdentifier: "DayOutlookCell")
+		windOutlookTableView.register(DayOutlookTableViewCell.nib, forCellReuseIdentifier: DayOutlookTableViewCell.identifier)
         windOutlookTableView.backgroundColor = .black
     }
     
     private func reloadData() {
         DispatchQueue.main.async {
-            // Reload table view
+			self.windOutlookTableView.reloadData()
         }
     }
 }
@@ -46,13 +46,14 @@ extension WindOutlookViewController: UITableViewDelegate {}
 
 extension WindOutlookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+		return dayOutlookArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = windOutlookTableView.dequeueReusableCell(withIdentifier: "DayOutlookCell", for: indexPath) as! DayOutlookTableViewCell
+		let cell = windOutlookTableView.dequeueReusableCell(withIdentifier: DayOutlookTableViewCell.identifier, for: indexPath) as! DayOutlookTableViewCell
         
-//        cell.dayOutlookModel = dayOutlookArray[indexPath.row]
+		let dailyOutlookModel = DayOutlookModel(dailyOutlookModel: dayOutlookArray[indexPath.row])
+        cell.dayOutlookModel = dailyOutlookModel
 //        cell.dayWindOutlookView.createWindBars(windSpeeds: wind)
         
         return cell
@@ -77,8 +78,8 @@ extension WindOutlookViewController: Observer {
     }
     
     func update<T>(with newValue: T) {
-        if let dayOutlookArray = newValue as? [DailyOutlookModel] {
-            self.dayOutlookArray = dayOutlookArray
+        if let weatherResponse = newValue as? OpenWeatherAllWeatherResponse {
+			self.dayOutlookArray = weatherResponse.daily
         }
     }
 }
