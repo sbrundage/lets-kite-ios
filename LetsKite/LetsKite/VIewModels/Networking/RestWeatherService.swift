@@ -9,15 +9,13 @@
 import Foundation
 
 class RestWeatherService: WeatherRequest {
-    func openWeatherMapOneCall(with requestModel: OpenWeatherAllWeatherRequest, completion: @escaping WebServiceResult<OpenWeatherAllWeatherRequest.ModelType>) {
-        guard let urlRequest = requestModel.createURLRequest() else {
-            completion(.failure(.moreInfo("Failed to create URL request for open weather map one call")))
-            return
-        }
-        
-        performRequestForDecodable(urlRequest) { (result) in
-            completion(result)
-        }
-    }
-    
+	
+	func performRequest<RequestModel: ApiResource>(with requestModel: RequestModel, completion: @escaping WebServiceResult<RequestModel.ModelType>) {
+
+		guard let urlRequest = requestModel.createURLRequest() else { return }
+
+		performRequestForDecodable(urlRequest) { (result) in
+			completion(result)
+		}
+	}
 }

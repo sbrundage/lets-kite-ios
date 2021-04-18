@@ -17,9 +17,6 @@ protocol ApiResource {
 }
 
 extension ApiResource {
-    var baseURL: String {
-        return WeatherEndpoint.openWeatherMapAll.rawValue
-    }
     
     func createURLRequest() -> URLRequest? {
         guard let url = URL(string: baseURL) else { return nil }

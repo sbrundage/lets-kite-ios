@@ -15,9 +15,6 @@ class WeatherServicePublisher {
     
     func fetchAllWeatherForecast(_ lat: String, _ lon: String) {
         
-        let lat = "33.441792"
-        let lon = "-94.037689"
-        
         let weatherRequest =
             OpenWeatherAllWeatherRequest(
                 lat: lat,
@@ -27,10 +24,9 @@ class WeatherServicePublisher {
                 exclude: .minutely
             )
         
-        weatherService.openWeatherMapOneCall(with: weatherRequest) { (result) in
+        weatherService.performRequest(with: weatherRequest) { (result) in
             switch result {
             case .success(let responseModel):
-                print("Success: \(responseModel)")
                 self.notifyAll(with: responseModel)
             case .failure(let error):
                 print("Error fetching all weather: \(error)")

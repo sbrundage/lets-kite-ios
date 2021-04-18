@@ -58,15 +58,6 @@ class LandingViewController: UIViewController {
         guard let inputZip = zipTextField.text else { return }
         zipCode = inputZip
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationVC = segue.destination as? WindOutlookViewController else { return }
-        
-        let weatherPublisher = WeatherServicePublisher()
-        
-        destinationVC.weatherServicePublisher = weatherPublisher
-        weatherPublisher.fetchAllWeatherForecast("", "")
-    }
 }
 
 extension LandingViewController: UITextFieldDelegate {

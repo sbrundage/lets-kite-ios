@@ -13,6 +13,7 @@ struct OpenWeatherAllWeatherRequest: ApiResource {
     
     var method: HTTPMethod = .get
     var parameters: [String : String]?
+	var baseURL: String = WeatherEndpoint.openWeatherMapAll.rawValue
     
     init(lat: String, lon: String, apiKey: String, units: OpenWeatherMapUnits, exclude: ForecastIncrement) {
         parameters = [

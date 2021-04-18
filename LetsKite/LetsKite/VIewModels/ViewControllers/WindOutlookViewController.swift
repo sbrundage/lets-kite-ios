@@ -11,6 +11,8 @@ import UIKit
 class WindOutlookViewController: UIViewController {
     
     @IBOutlet weak var windOutlookTableView: UITableView!
+	
+	static let storyboardID = "WindOutlookViewController"
     
     private let wind = Array<Int>()
     private var dayOutlookArray: [DailyOutlookModel] = [] {
@@ -18,13 +20,18 @@ class WindOutlookViewController: UIViewController {
             reloadData()
         }
     }
+	
+	var hourlyForecastDict: [String: [WeatherOutlook]] = [:]
     
-    var weatherServicePublisher: WeatherServicePublisher!
+    var weatherServicePublisher = WeatherServicePublisher()
+	let lat: String = "33.441792"
+	let lon: String = "-94.037689"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 		weatherServicePublisher.addObserver(self)
+		weatherServicePublisher.fetchAllWeatherForecast(lat, lon)
         setupTableView()
     }
     
@@ -32,7 +39,8 @@ class WindOutlookViewController: UIViewController {
         windOutlookTableView.delegate = self
         windOutlookTableView.dataSource = self
 		windOutlookTableView.register(DayOutlookTableViewCell.nib, forCellReuseIdentifier: DayOutlookTableViewCell.identifier)
-        windOutlookTableView.backgroundColor = .black
+		windOutlookTableView.register(HostingCell<DayView>.self, forCellReuseIdentifier: "HostingCell<DayView>")
+		windOutlookTableView.backgroundColor = .black
     }
     
     private func reloadData() {
@@ -40,6 +48,19 @@ class WindOutlookViewController: UIViewController {
 			self.windOutlookTableView.reloadData()
         }
     }
+	
+	private func handleHourlyForecastResponse(_ hourlyForecast: [WeatherOutlook]) {
+		var hourlyForecastDict: [String: [WeatherOutlook]] = [:]
+		
+		for forecast in hourlyForecast {
+			let dateKey = forecast.dt.toDateStringFrom1970()
+			hourlyForecastDict.keys.contains(dateKey) ?
+				hourlyForecastDict[dateKey]?.append(forecast) : (hourlyForecastDict[dateKey] = [forecast])
+		}
+		// At this point we will have a dictionary of wind outlook forecast arrays
+		// ["April 6, 2021": [forecast]]
+		self.hourlyForecastDict = hourlyForecastDict
+	}
 }
 
 extension WindOutlookViewController: UITableViewDelegate {}
@@ -50,13 +71,22 @@ extension WindOutlookViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = windOutlookTableView.dequeueReusableCell(withIdentifier: DayOutlookTableViewCell.identifier, for: indexPath) as! DayOutlookTableViewCell
-        
+
 		let dailyOutlookModel = DayOutlookModel(dailyOutlookModel: dayOutlookArray[indexPath.row])
+		let dateString = dailyOutlookModel.dt.toDateStringFrom1970()
+		// Check dictionary for the date string
+		// If present, then we pass in the wind data
+		let hourlyWindData = hourlyForecastDict[dateString]
+		let cell = windOutlookTableView.dequeueReusableCell(withIdentifier: DayOutlookTableViewCell.identifier, for: indexPath) as! DayOutlookTableViewCell
+
         cell.dayOutlookModel = dailyOutlookModel
-//        cell.dayWindOutlookView.createWindBars(windSpeeds: wind)
-        
+		hourlyWindData != nil ? cell.hourlyWindForecast = hourlyWindData : cell.stubbedHourlyWindView()
         return cell
+		
+		// For using SwiftUI
+		//		let cell = windOutlookTableView.dequeueReusableCell(withIdentifier: "HostingCell<DayView>", for: indexPath) as! HostingCell<DayView>
+		//		cell.set(rootView: DayView(dayOutlookModel: dailyOutlookModel), parentController: self)
+		//		return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -79,7 +109,10 @@ extension WindOutlookViewController: Observer {
     
     func update<T>(with newValue: T) {
         if let weatherResponse = newValue as? OpenWeatherAllWeatherResponse {
+			// We get back two days worth of hourly forecasts
+			// Create a DS to hold both of these days
+			handleHourlyForecastResponse(weatherResponse.hourly)
 			self.dayOutlookArray = weatherResponse.daily
-        }
+		}
     }
 }

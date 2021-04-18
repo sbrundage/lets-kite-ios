@@ -13,12 +13,12 @@ struct OpenWeatherAllWeatherResponse: Decodable {
     let lon: Double
     let timezone: String
     let timezone_offset: Int
-    let current: WeatherOutlookResponseModel
-    let hourly: [WeatherOutlookResponseModel]
+    let current: WeatherOutlook
+    let hourly: [WeatherOutlook]
     let daily: [DailyOutlookModel]
 }
 
-struct WeatherOutlookResponseModel: Codable {
+struct WeatherOutlook: Codable {
     let dt: Int
     let sunrise: Int?
     let sunset: Int?
@@ -31,6 +31,7 @@ struct WeatherOutlookResponseModel: Codable {
     let wind_speed: Float
     let wind_deg: Int
     let weather: [WeatherResponseModel]
+	var date: Date { dt.toDateFrom1970() }
 }
 
 struct WeatherResponseModel: Codable {
