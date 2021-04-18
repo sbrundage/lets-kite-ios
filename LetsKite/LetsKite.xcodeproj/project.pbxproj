@@ -301,8 +301,6 @@
 			dependencies = (
 			);
 			name = LetsKite;
-			packageProductDependencies = (
-			);
 			productName = LetsKite;
 			productReference = 9E9B979D24F678080010CB81 /* LetsKite.app */;
 			productType = "com.apple.product-type.application";
@@ -353,8 +351,6 @@
 				Base,
 			);
 			mainGroup = 9E9B979424F678080010CB81;
-			packageReferences = (
-			);
 			productRefGroup = 9E9B979E24F678080010CB81 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
