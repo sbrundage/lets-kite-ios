@@ -12,13 +12,15 @@ struct OpenWeatherAllWeatherRequest: ApiResource {
     typealias ModelType = OpenWeatherAllWeatherResponse
     
     var method: HTTPMethod = .get
-    var parameters: [String : Any]?
+    var parameters: [String : String]?
+	var baseURL: String = WeatherEndpoint.openWeatherMapAll.rawValue
     
     init(lat: String, lon: String, apiKey: String, units: OpenWeatherMapUnits, exclude: ForecastIncrement) {
         parameters = [
             "lat": lat,
             "lon": lon,
-            "exclude": exclude,
+            "exclude": exclude.rawValue,
+            "units": units.rawValue,
             "appid": apiKey
         ]
     }

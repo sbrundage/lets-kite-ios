@@ -1,24 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LandingViewController" customModule="LetsKite" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D1L-Sf-DrN"/>
+                        <viewControllerLayoutGuide type="bottom" id="GBz-uR-lXh"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you kiting?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNB-3t-yXb">
+                                <rect key="frame" x="82.5" y="244" width="249" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PON-lG-sEr">
+                                <rect key="frame" x="137" y="335.5" width="140" height="40"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BQZ-h3-Bix"/>
+                                    <constraint firstAttribute="width" constant="140" id="D1g-dp-3UF"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4e-ds-ymo">
+                                <rect key="frame" x="82.5" y="435.5" width="249" height="40"/>
+                                <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cJ2-c6-q5v"/>
+                                </constraints>
+                                <state key="normal" title="Let's Fly">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="letsFlyButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I4V-Ek-aYM"/>
+                                    <segue destination="uSz-5N-K0j" kind="show" id="6YU-xV-twJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PON-lG-sEr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OeV-Uz-JzF"/>
+                            <constraint firstItem="U4e-ds-ymo" firstAttribute="leading" secondItem="uNB-3t-yXb" secondAttribute="leading" id="cFS-tQ-aRO"/>
+                            <constraint firstItem="uNB-3t-yXb" firstAttribute="top" secondItem="D1L-Sf-DrN" secondAttribute="bottom" constant="200" id="eRa-wc-cEv"/>
+                            <constraint firstItem="PON-lG-sEr" firstAttribute="top" secondItem="uNB-3t-yXb" secondAttribute="bottom" constant="60" id="fwf-6c-5Y3"/>
+                            <constraint firstItem="uNB-3t-yXb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mIm-mr-ftE"/>
+                            <constraint firstItem="U4e-ds-ymo" firstAttribute="top" secondItem="PON-lG-sEr" secondAttribute="bottom" constant="60" id="mdN-z6-uaB"/>
+                            <constraint firstItem="U4e-ds-ymo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tCz-9Q-7L6"/>
+                            <constraint firstItem="U4e-ds-ymo" firstAttribute="trailing" secondItem="uNB-3t-yXb" secondAttribute="trailing" id="ynu-KQ-Yq8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="letsFlyButton" destination="U4e-ds-ymo" id="UAc-qH-zY2"/>
+                        <outlet property="zipTextField" destination="PON-lG-sEr" id="Kef-iG-6b5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
+        </scene>
+        <!--Wind Outlook View Controller-->
+        <scene sceneID="HrG-Lf-SDq">
+            <objects>
+                <viewController storyboardIdentifier="WindOutlookViewController" modalPresentationStyle="fullScreen" id="uSz-5N-K0j" customClass="WindOutlookViewController" customModule="LetsKite" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Ko-iP-qyF"/>
+                        <viewControllerLayoutGuide type="bottom" id="9rr-Ts-mFo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iaO-LX-E48">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mvr-kF-sN9">
+                                <rect key="frame" x="14" y="81" width="386" height="781"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Outlook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i72-1v-XDN">
+                                <rect key="frame" x="151" y="44" width="112" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i72-1v-XDN" firstAttribute="centerX" secondItem="iaO-LX-E48" secondAttribute="centerX" id="GUI-E8-Mub"/>
+                            <constraint firstItem="mvr-kF-sN9" firstAttribute="leading" secondItem="iaO-LX-E48" secondAttribute="leading" constant="14" id="Ihe-fa-qxx"/>
+                            <constraint firstItem="mvr-kF-sN9" firstAttribute="top" secondItem="i72-1v-XDN" secondAttribute="bottom" constant="15" id="X3L-GR-YTI"/>
+                            <constraint firstAttribute="trailing" secondItem="mvr-kF-sN9" secondAttribute="trailing" constant="14" id="co4-nP-2js"/>
+                            <constraint firstItem="i72-1v-XDN" firstAttribute="top" secondItem="7Ko-iP-qyF" secondAttribute="bottom" id="eUR-95-cef"/>
+                            <constraint firstItem="9rr-Ts-mFo" firstAttribute="top" secondItem="mvr-kF-sN9" secondAttribute="bottom" id="i0n-pd-2qs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4Zf-P0-EcK"/>
+                    <connections>
+                        <outlet property="windOutlookTableView" destination="mvr-kF-sN9" id="b3D-zJ-BhU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yes-D2-Glq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="139"/>
         </scene>
     </scenes>
 </document>

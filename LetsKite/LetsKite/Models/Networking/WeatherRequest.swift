@@ -18,7 +18,7 @@ class WeatherRequest: WeatherRequestProtocol {
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             
             // Check for Errors
-            guard error != nil else {
+            guard error == nil else {
                 completion(.failure(.unknown(error!)))
                 return
             }
